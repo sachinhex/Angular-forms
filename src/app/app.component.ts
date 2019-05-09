@@ -9,5 +9,16 @@ import { User } from './user';
 export class AppComponent {
   title = 'tdforms';
   topics= ['Angular','React', 'Vue'];
-  userModel = new User('rob','rob@gmail.com',8799956666, '','morning',true);
+  topicHasError= true;
+  userModel = new User('','rob@gmail.com', null , 'default','morning',true);
+    validateTopic(value){
+      if(value==='default'){
+        this.topicHasError=true;  
+        console.log(this.topicHasError)
+      }
+      else{
+        this.topicHasError= false;
+        console.log(this.topicHasError)
+      }
+    }
 }
