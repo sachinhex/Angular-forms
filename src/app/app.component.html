@@ -17,9 +17,10 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul> -->
-<div class="container-fluid">
-  <h2>Enrollment Form</h2>
-  <form #userForm="ngForm">
+<div class="container-fluid py-3">
+  <form #userForm="ngForm" *ngIf="!isSubmitted" (ngSubmit)="onSubmit()">
+    <h2>Enrollment Form</h2>
+    {{userForm.form.valid}}
     <!-- {{ userForm.value | json }} -->
     <hr>
     <!-- {{userModel |json}} -->
@@ -97,6 +98,11 @@
       <input type="checkbox" class="form-check-input" name="offers" [(ngModel)]="userModel.subscribe" />
       <label class="form-check-label">Send me promotional offers</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="userForm.form.invalid || topicHasError" type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+    <div class="text-center" *ngIf="isSubmitted">
+      <img src="../assets/img/success.png" alt="form-submitted" width="158">
+      <h1 class="text-success"> Your form has been submitted successfully;</h1>
+    </div>
 </div>
